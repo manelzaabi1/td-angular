@@ -1,0 +1,48 @@
+<!-- Section Hero -->
+<section class="bg-light py-5 text-center">
+    <div class="container">
+        <h1 class="display-5 fw-bold">Bienvenue sur EventHub</h1>
+        <p class="lead text-muted mt-3">
+            La plateforme pour créer, gérer et participer à vos événements préférés.<br>
+            Réservez vos tickets en ligne et partagez vos retours en toute simplicité.
+        </p>
+        <div class="mt-4">
+<a routerLink="/events" class="btn btn-primary btn-lg">Découvrir les événements</a>
+            <a href="/auth/register" class="btn btn-outline-secondary btn-lg ms-2">Créer un compte</a>
+        </div>
+    </div>
+</section>
+
+<!-- Section Features -->
+<section class="container py-5">
+  <div class="row g-4">
+
+    <div class="col-md-4">
+      <app-card>
+        <img card-image src="/images/ticket.png" class="card-img-top" alt="Tickets">
+        <h5 card-title class="card-title">Achetez vos tickets</h5>
+        <p card-text class="card-text">Réservez en quelques clics, rapidement et en toute sécurité.</p>
+        <a card-link routerLink="/tickets" class="btn btn-primary btn-sm">Mes Tickets</a>
+      </app-card>
+    </div>
+
+    <div class="col-md-4">
+      <app-card>
+        <img card-image src="/images/event.png" class="card-img-top" alt="Événements">
+        <h5 card-title class="card-title">Organisez vos événements</h5>
+        <p card-text class="card-text">Publiez, gérez et suivez vos ventes facilement grâce à EventHub.</p>
+        <a card-link routerLink="/events" class="btn btn-outline-primary btn-sm">Voir les événements</a>
+      </app-card>
+    </div>
+
+    <div class="col-md-4">
+      <app-card>
+        <img card-image src="/images/feedback.png" class="card-img-top" alt="Feedback">
+        <h5 card-title class="card-title">Partagez votre avis</h5>
+        <p card-text class="card-text">Aidez la communauté en donnant vos feedbacks et notes.</p>
+        <a card-link href="/feedback" class="btn btn-outline-secondary btn-sm">Donner un feedback</a>
+      </app-card>
+    </div>
+
+  </div>
+</section>

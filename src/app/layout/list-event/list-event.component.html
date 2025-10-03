@@ -1,0 +1,133 @@
+<!-- Main Content -->
+<div class="container-fluid bg-light min-vh-100">
+  <div class="container py-5">
+    <!-- Page Header -->
+    <div class="row mb-4">
+      <div class="col-12 text-center">
+        <h1 class="display-5 fw-bold text-primary">Liste des événements</h1>
+        <p class="lead">Découvrez tous les événements disponibles</p>
+      </div>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="row mb-5">
+      <div class="col-md-8 mx-auto">
+        <div class="input-group input-group-lg">
+          <span class="input-group-text bg-primary text-white">
+            🔍
+          </span>
+          <input
+            type="text"
+            class="form-control form-control-lg"
+            placeholder="Rechercher un événement par titre ou lieu..."
+            [(ngModel)]="searchText"
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- Events Grid -->
+    <div class="row g-4">
+      <div *ngFor="let event of filteredEvents" class="col-lg-6 col-xl-4">
+        <div class="card event-card h-100 shadow-sm border-0">
+          <!-- Event Image -->
+          <div class="event-image-container">
+            <img 
+              [src]="event.imageUrl" 
+              class="card-img-top event-image" 
+              [alt]="event.titre"
+              (error)="handleImageError($event)"
+            >
+            <!-- Status Badge -->
+            <div class="event-status" [ngClass]="{
+              'bg-success': getEventStatus(event) === 'DISPONIBLE',
+              'bg-danger': getEventStatus(event) === 'COMPLET' || getEventStatus(event) === 'EXPIRÉ'
+            }">
+              {{ getEventStatus(event) }}
+            </div>
+          </div>
+
+          <div class="card-body d-flex flex-column">
+            <!-- Event Title and Date -->
+            <h5 class="card-title text-primary fw-bold">{{ event.titre |titlecase}}</h5>
+            <div class="d-flex align-items-center mb-2">
+              <span class="text-muted me-2">📍</span>
+              <span class="text-muted">{{ event.lieu }} - {{ event.date | date:'d MMM y' }}</span>
+            </div>
+
+            <!-- Event Description -->
+            <p class="card-text text-secondary flex-grow-1">{{ event.description }}</p>
+
+            <!-- Price and Places -->
+            <div class="row mb-3">
+              <div class="col-6">
+                <strong class="text-primary">{{ event.prix|currency|number}}</strong>
+              </div>
+              <div class="col-6 text-end">
+                <span class="badge bg-light text-dark">
+                  👥 {{ event.nbPlaces }} places
+                </span>
+              </div>
+            </div>
+
+            <!-- Like Button -->
+            <div class="d-flex justify-content-between align-items-center mt-auto">
+              <button
+                class="btn btn-like"
+                (click)="likeEvent(event)"
+                [disabled]="isExpired(event)"
+                [ngClass]="{
+                  'btn-primary': !isExpired(event),
+                  'btn-secondary': isExpired(event)
+                }"
+              >
+                ❤️ {{ event.nbLike }} J'aime
+              </button>
+              
+              <button 
+                class="btn btn-outline-primary"
+                [disabled]="isExpired(event)"
+              >
+                Réserver
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- No Results Message -->
+    <div *ngIf="filteredEvents.length === 0" class="text-center py-5">
+      <div class="text-muted mb-3" style="font-size: 3rem;">🔍</div>
+      <h4 class="text-muted">Aucun événement trouvé</h4>
+      <p class="text-muted">Essayez de modifier vos critères de recherche</p>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="bg-dark text-white py-4 mt-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h5>EventHub</h5>
+        <p>Plateforme de gestion d'événements, billetterie en ligne et feedback.</p>
+      </div>
+      <div class="col-md-3">
+        <h6>Liens rapides</h6>
+        <ul class="list-unstyled">
+          <li><a href="#" class="text-white-50">Événements</a></li>
+          <li><a href="#" class="text-white-50">Mes Tickets</a></li>
+          <li><a href="#" class="text-white-50">Feedback</a></li>
+          <li><a href="#" class="text-white-50">Se connecter</a></li>
+        </ul>
+      </div>
+      <div class="col-md-3">
+        <h6>Contact</h6>
+        <p class="text-white-50 mb-1">Email : contact&#64;eventhub.in</p>
+        <p class="text-white-50">Site : eventhub.in</p>
+      </div>
+    
+    </div>
+  </div>
+</footer>
