@@ -19,5 +19,10 @@ body {
   flex-direction: column;
   min-height: 100vh;
 }
+ highlight {
+background-color: yellow;
+padding: 10px;
+border: 1px solid black;
+}
 
 /* Styles supplémentaires... */

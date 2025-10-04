@@ -8,6 +8,16 @@
                 aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+        <nav [class]="isAdmin
+            ? 'navbar navbar-expand-lg navbar-dark bg-dark'
+            : 'navbar navbar-expand-lg navbar-light bg-light'">
+         manel
+        </nav>    
+        <nav [ngClass]="isAdmin 
+               ? ['navbar', 'navbar-expand-lg', 'navbar-dark', 'bg-dark'] 
+               : ['navbar', 'navbar-expand-lg', 'navbar-light', 'bg-light']">
+                <a class="navbar-brand ms-3" href="#">Mon Application</a>
+        </nav>
 
         <!-- Menu principal -->
         <div class="collapse navbar-collapse" id="mainNav">
@@ -31,4 +41,7 @@
             </ul>
         </div>
     </div>
+   
+
+
 </nav>

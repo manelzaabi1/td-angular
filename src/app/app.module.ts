@@ -18,7 +18,9 @@ import { CardComponent } from './card/card.component';
     HomeComponent,
     FooterComponent,
     NotFoundComponent,
-    ListEventComponent
+    ListEventComponent,
+    
+    
     
   ],
   imports: [
